@@ -4,7 +4,8 @@ var browserify = require('browserify-middleware');
 var less = require('less-middleware');
 var nunjucks = require('nunjucks');
 var config = require('./client/config');
-
+var session = require('express-session');
+var bodyParser = require('body-parser');
 // initialise express
 var app = express();
 
@@ -17,6 +18,20 @@ nunjucks.configure('server/templates/views', {
 app.use(less('public'));
 // public assets are served before any dynamic requests
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+	secret: 'mi',
+	// genid:function(){
+	// 	const d = new Date();
+	// 	var m = d.getMinutes().toString();
+	// 	m = m.replace(/^(\d){1}$/,'0$1');
+    //
+	// 	var s = d.getSeconds().toString();
+	// 	s = s.replace(/^(\d){1}$/,'0$1');
+	// 	return m + s;
+	// },
+	// cookie: { maxAge: 3000e3 },
+}));
 
 // common packages are precompiled on server start and cached
 app.get('/js/' + config.common.bundle, browserify(config.common.packages, {
@@ -37,6 +52,41 @@ app.use('/js', browserify('./client/scripts', {
 	set up any additional server routes (api endpoints, static pages, etc.)
 	here before the catch-all route for index.html below.
 */
+function restrictFn(req, res, next) {
+	if (req.session.user) {
+		next();
+	} else {
+		req.session.error = 'Access denied!';
+		res.send("未登录")
+	}
+}
+app.get('/restrict', restrictFn, function(req, res) {
+	res.send('<p style="color: #00ff00;">已经登录</p>');
+});
+var users = {
+	tj: { name: 'tj', password: 'tj' },
+	zy: { name: 'zy', password: 'zy' },
+};
+function authenticate(userName, password, fn) {
+	console.log('authecticating……');
+	if(userName === 'zy' && password === 'zy'){
+		return fn(null, users[userName]);
+	}else{
+		fn(new Error('invalid password'));
+	}
+}
+app.post('/login',function(req, res){
+	authenticate(req.body.userName, req.body.password,(err, user) => {
+		if(user){
+			req.session.regenerate(function(){
+				req.session.user = user;
+				res.redirect('/restrict');
+			});
+		}else{
+			res.send('server  get not login');
+		}
+	})
+});
 
 app.get('*', function(req, res) {
 	// this route will respond to all requests with the contents of your index
