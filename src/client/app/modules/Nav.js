@@ -1,6 +1,5 @@
 import React from 'react';
 import NavLink from './NavLink';
-import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
     // margin: 12,
@@ -20,7 +19,7 @@ export default React.createClass({
                         <NavLink className="button" to="/" onlyActiveOnIndex>首页</NavLink>
                         <NavLink className="button" to="/doc">文档</NavLink>
                         <NavLink className="button" to="/about">关于</NavLink>
-                        <NavLink className="button login" style={{display: 'inline-flex', alignItems: 'center'}} to="/about">登录</NavLink>
+                        <NavLink className="button login" style={{display: 'inline-flex', alignItems: 'center'}} to="/login">登录</NavLink>
 
                     </ul>
 

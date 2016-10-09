@@ -11,6 +11,7 @@ import Doc from './modules/Doc'
 import About from './modules/About'
 import Home from './modules/Home'
 import Nav from './modules/Nav'
+import Login from './modules/Login'
 
 
 ReactDOM.render(
@@ -20,6 +21,7 @@ ReactDOM.render(
                 <IndexRoute component={Home}/>
                 <Route path="/about" component={About}/>
                 <Route path="/doc" component={Doc}/>
+                <Route path="/login" component={Login}/>
             </Route>
         </Router>
     </MuiThemeProvider>,
