@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import Sidebar from './Sidebar';
 import AppContent from './AppContent';
-export default React.createClass({
+export default class App extends React.Component {
     render() {
         return (
             <div
@@ -16,4 +16,4 @@ export default React.createClass({
             </div>
         );
     }
-})
+}

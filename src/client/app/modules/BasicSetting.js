@@ -1,9 +1,8 @@
 import React from 'react';
-import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+import {
+    Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,
+}
     from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
-
 const styles = {
     propContainer: {
         width: 200,
@@ -14,7 +13,6 @@ const styles = {
         margin: '20px auto 10px',
     },
 };
-
 const tableData = [
     {
         name: '应用名称',
@@ -39,17 +37,13 @@ const tableData = [
         status: '2015-11-19 13:47:39',
     },
 ];
-
-export default class TableExampleComplex extends React.Component {
-
+export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             fixedHeader: false,
             fixedFooter: false,
             stripedRows: false,
-            showRowHover: false,
             selectable: false,
             multiSelectable: false,
             enableSelectAll: false,
@@ -58,7 +52,6 @@ export default class TableExampleComplex extends React.Component {
             showRowHover: false,
         };
     }
-
     render() {
         return (
             <div>
@@ -75,7 +68,7 @@ export default class TableExampleComplex extends React.Component {
                         enableSelectAll={this.state.enableSelectAll}
                     >
                         <TableRow>
-                            <TableHeaderColumn colSpan="2" tooltip="Super Header" style={{textAlign: 'center'}}>
+                            <TableHeaderColumn colSpan="2" tooltip="应用基本设置" style={{ textAlign: 'center' }}>
                                 基本设置
                             </TableHeaderColumn>
                         </TableRow>
@@ -90,7 +83,7 @@ export default class TableExampleComplex extends React.Component {
                         showRowHover={this.state.showRowHover}
                         stripedRows={this.state.stripedRows}
                     >
-                        {tableData.map( (row, index) => (
+                        {tableData.map((row, index) => (
                             <TableRow key={index} selected={row.selected}>
                                 <TableRowColumn>{row.name}</TableRowColumn>
                                 <TableRowColumn>{row.status}</TableRowColumn>
@@ -105,16 +98,13 @@ export default class TableExampleComplex extends React.Component {
                             <TableRowColumn>Status</TableRowColumn>
                         </TableRow>
                         <TableRow>
-                            <TableRowColumn colSpan="2" style={{textAlign: 'center'}}>
+                            <TableRowColumn colSpan="2" style={{ textAlign: 'center' }}>
                                 Super Footer
                             </TableRowColumn>
                         </TableRow>
                     </TableFooter>
                 </Table>
-
-
             </div>
         );
     }
 }
-

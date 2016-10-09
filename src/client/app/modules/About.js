@@ -1,7 +1,10 @@
-import React from 'react'
-
-export default React.createClass({
-  render() {
-    return <div>关于</div>
-  }
-})
+import React from 'react';
+export default class About extends React.Component {
+    render() {
+        return (
+            <div>
+                关于
+            </div>
+        );
+    }
+}

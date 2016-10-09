@@ -2,28 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Router, Route, browserHistory, IndexRoute} from 'react-router'
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import Doc from './modules/Doc';
+import About from './modules/About';
+import Home from './modules/Home';
+import Nav from './modules/Nav';
+import Login from './modules/Login';
+import App from './modules/App';
 
 injectTapEventPlugin();
-
-
-import Doc from './modules/Doc'
-import About from './modules/About'
-import Home from './modules/Home'
-import Nav from './modules/Nav'
-import Login from './modules/Login'
-import App from './modules/App'
-
-
 ReactDOM.render(
     <MuiThemeProvider>
         <Router history={browserHistory}>
             <Route path="/" component={Nav}>
-                <IndexRoute component={Home}/>
-                <Route path="/about" component={About}/>
-                <Route path="/doc" component={Doc}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/app" component={App}/>
+                <IndexRoute component={Home} />
+                <Route path="/about" component={About} />
+                <Route path="/doc" component={Doc} />
+                <Route path="/login" component={Login} />
+                <Route path="/app" component={App} />
             </Route>
         </Router>
     </MuiThemeProvider>,

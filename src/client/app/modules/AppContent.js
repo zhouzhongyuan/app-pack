@@ -1,6 +1,6 @@
-import React from 'react'
-import BasicSetting from './BasicSetting'
-export default React.createClass({
+import React from 'react';
+import BasicSetting from './BasicSetting';
+export default class AppContent extends React.Component {
     render() {
         return (
             <div
@@ -10,4 +10,4 @@ export default React.createClass({
             </div>
         );
     }
-})
+}

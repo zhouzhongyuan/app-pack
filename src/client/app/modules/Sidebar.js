@@ -1,24 +1,21 @@
 import React from 'react';
-import {List, ListItem} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import Subheader from 'material-ui/Subheader';
 import Toggle from 'material-ui/Toggle';
-
-export default class ListExampleNested extends React.Component {
-
-    handleToggle(){
+export default class Sidebar extends React.Component {
+    handleToggle() {
         this.setState({
             open: !this.state.open,
         });
-    };
-    handleNestedListToggle(item){
+    }
+    handleNestedListToggle(item) {
         this.setState({
             open: item.state.open,
         });
-    };
+    }
     render() {
         const state = {
             open: false,
@@ -38,8 +35,8 @@ export default class ListExampleNested extends React.Component {
                         <ListItem
                             primaryText="应用设置"
                             leftIcon={<ContentInbox />}
-                            initiallyOpen={true}
-                            primaryTogglesNestedList={true}
+                            initiallyOpen
+                            primaryTogglesNestedList
                             nestedItems={[
                                 <ListItem
                                     key={1}
