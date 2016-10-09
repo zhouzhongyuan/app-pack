@@ -8,7 +8,7 @@ const style = {
 export default React.createClass({
     render(){
         return (
-            <div>
+            <div style={{display:'flex',width:'100%',height:'100%'}}>
                 <div className="top-bar">
                     <div className="top-bar-logo" style={{display:'flex',alignItems:'center'}}><img src="./public/img/appbuild_text.png" alt=""/></div>
                     <ul
@@ -25,7 +25,13 @@ export default React.createClass({
                     </ul>
 
                 </div>
-                {this.props.children}
+                <div style={{
+                    flex:1,
+                    display:'flex',
+                    marginTop: 125,
+                }}>
+                    {this.props.children}
+                </div>
             </div>
         );
     }

@@ -1,11 +1,18 @@
 import React from 'react'
+import Sidebar from './Sidebar';
+import AppContent from './AppContent';
 export default React.createClass({
     render() {
         return (
             <div
-                style={{marginTop: 150, height: 2000}}
+                className="app-setting"
             >
-                App
+                <section className="sidebar">
+                    <Sidebar />
+                </section>
+                <section className="content-wrapper">
+                    <AppContent />
+                </section>
             </div>
         );
     }

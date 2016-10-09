@@ -3,6 +3,10 @@ body{
     margin: 0;
     padding: 0;
 }
+#app{
+    height: 100%;
+    width: 100%;
+}
 .top-bar{
     padding-top: 40px;
     padding-bottom: 40px;
@@ -70,5 +74,23 @@ body{
 
 }
 .top-bar-nav-menu{
+
+}
+
+.app-setting{
+    flex:1;
+    display: flex;
+    flex-direction: row;
+    align-items:stretch;
+}
+.app-setting > .sidebar{
+    /*background-color: #2a2a2a;*/
+    color: #9e9e9e;
+    width: 235px;
+    border-right: 1px solid #9e9e9e;
+
+}
+.app-setting > .content-wrapper{
+    flex: 1;
 
 }
