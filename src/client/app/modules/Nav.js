@@ -17,6 +17,7 @@ export default React.createClass({
                         className="top-bar-nav-menu"
                     >
                         <NavLink className="button" to="/" onlyActiveOnIndex>首页</NavLink>
+                        <NavLink className="button" to="/app">应用</NavLink>
                         <NavLink className="button" to="/doc">文档</NavLink>
                         <NavLink className="button" to="/about">关于</NavLink>
                         <NavLink className="button login" style={{display: 'inline-flex', alignItems: 'center'}} to="/login">登录</NavLink>
