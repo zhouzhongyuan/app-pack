@@ -6,25 +6,29 @@ import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import Toggle from 'material-ui/Toggle';
 export default class Sidebar extends React.Component {
-    handleToggle() {
-        this.setState({
-            open: !this.state.open,
-        });
-    }
-    handleNestedListToggle(item) {
-        this.setState({
-            open: item.state.open,
-        });
-    }
-    render() {
-        const state = {
+    constructor(props) {
+        super(props);
+        this.state = {
             open: false,
         };
+    }
+    handleToggle(){
+        this.setState({
+        open: !this.state.open,
+        });
+    };
+
+    handleNestedListToggle(item){
+        this.setState({
+        open: item.state.open,
+        });
+    };
+    render() {
         return (
             <div>
                 <Toggle
-                    toggled={state.open}
-                    onToggle={this.handleToggle}
+                    toggled={this.state.open}
+                    onToggle={this.handleToggle.bind(this)}
                     labelPosition="right"
                     label="展开"
                 />
@@ -34,6 +38,7 @@ export default class Sidebar extends React.Component {
                         <ListItem primaryText="基本设置" leftIcon={<ContentSend />} />
                         <ListItem
                             primaryText="应用设置"
+                            open={this.state.open}
                             leftIcon={<ContentInbox />}
                             initiallyOpen
                             primaryTogglesNestedList
