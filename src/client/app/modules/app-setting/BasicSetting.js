@@ -36,6 +36,10 @@ const tableData = [
         name: '创建时间',
         status: '2015-11-19 13:47:39',
     },
+    {
+        name: 'Yigo版本',
+        status: '1.6 OR 2.0',
+    }
 ];
 export default class BasicSetting extends React.Component {
     constructor(props) {

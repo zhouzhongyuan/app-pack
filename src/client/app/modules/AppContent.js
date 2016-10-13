@@ -1,5 +1,5 @@
 import React from 'react';
-import BasicSetting from './BasicSetting';
+import BasicSetting from './app-setting/BasicSetting';
 export default class AppContent extends React.Component {
     render() {
         return (

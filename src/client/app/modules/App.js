@@ -10,8 +10,9 @@ export default class App extends React.Component {
                 <section className="sidebar">
                     <Sidebar />
                 </section>
+                
                 <section className="content-wrapper">
-                    <AppContent />
+                    {this.props.children}
                 </section>
             </div>
         );

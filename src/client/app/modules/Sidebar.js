@@ -5,6 +5,7 @@ import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import Toggle from 'material-ui/Toggle';
+import NavLink from './NavLink';
 export default class Sidebar extends React.Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,10 @@ export default class Sidebar extends React.Component {
                 <br />
                 <div>
                     <List>
-                        <ListItem primaryText="基本设置" leftIcon={<ContentSend />} />
+                        <NavLink className="button" to="/app/basic">
+                            <ListItem primaryText="基本设置" leftIcon={<ContentSend />} />                    
+                        </NavLink>
+
                         <ListItem
                             primaryText="应用设置"
                             open={this.state.open}
@@ -43,11 +47,14 @@ export default class Sidebar extends React.Component {
                             initiallyOpen
                             primaryTogglesNestedList
                             nestedItems={[
-                                <ListItem
-                                    key={1}
-                                    primaryText="图标设置"
-                                    leftIcon={<ActionGrade />}
-                                />,
+                                <NavLink className="button" to="/app/icon">
+                                    <ListItem
+                                        key={1}
+                                        primaryText="图标设置"
+                                        leftIcon={<ActionGrade />}
+                                    >
+                                    </ListItem>
+                                </NavLink>,
                                 <ListItem
                                     key={2}
                                     primaryText="启动页设置"
