@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.onClickSubmit = this.onClickSubmit.bind(this);
     }
-    onClickSubmit(){
+    onClickSubmit(e){
+        if(e.type === 'keydown' && e.keyCode !== 13){
+            return;
+        }
         let loginName = this.refs.loginName.getValue();
         let loginPassword = this.refs.loginPassword.getValue();
         fetch("/login",{
@@ -20,7 +24,7 @@ export default class Login extends React.Component {
         })
             .then((res) => {
                 if (res.ok) {
-                    alert("Perfect! Your settings are saved.");
+                    browserHistory.push('/app');
                 } else if (res.status == 401) {
                     alert("Oops! You are not authorized.");
                 }
@@ -34,14 +38,16 @@ export default class Login extends React.Component {
     }
     render() {
         return (
-            <div style={{
-                flex:1,
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center'
-
-            }}>
+            <div
+                style={{
+                    flex:1,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+                onKeyDown={this.onClickSubmit}
+            >
                 <Card
                     style={{
                         maxWidth: 350,
