@@ -12,8 +12,25 @@ export default class Login extends React.Component {
     onClickSubmit(){
         let loginName = this.refs.loginName.getValue();
         let loginPassword = this.refs.loginPassword.getValue();
+        fetch("/login",{
+            method: "post",
+            body: `loginName=${loginName}&loginPassword=${loginPassword}`,
+            credentials: 'include',
+
+        })
+            .then((res) => {
+                if (res.ok) {
+                    alert("Perfect! Your settings are saved.");
+                } else if (res.status == 401) {
+                    alert("Oops! You are not authorized.");
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
 
         console.log(loginName, loginPassword);
+
     }
     render() {
         return (
