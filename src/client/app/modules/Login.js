@@ -1,10 +1,20 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 export default class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClickSubmit = this.onClickSubmit.bind(this);
+    }
+    onClickSubmit(){
+        let loginName = this.refs.loginName.getValue();
+        let loginPassword = this.refs.loginPassword.getValue();
+
+        console.log(loginName, loginPassword);
+    }
     render() {
         return (
             <div style={{
@@ -29,11 +39,13 @@ export default class Login extends React.Component {
                         <TextField
                             hintText="账号"
                             floatingLabelText="账号"
+                            ref="loginName"
                         /><br />
                         <TextField
                             hintText="密码"
                             floatingLabelText="密码"
                             type="password"
+                            ref="loginPassword"
                         /><br />
                         <RaisedButton
                             fullWidth={true}
@@ -43,6 +55,7 @@ export default class Login extends React.Component {
                                 marginTop: 40,
                                 height: 48
                             }}
+                            onClick={this.onClickSubmit}
                         />
                     </CardActions>
                 </Card>
