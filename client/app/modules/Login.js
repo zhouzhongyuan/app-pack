@@ -18,8 +18,12 @@ export default class Login extends React.Component {
         let loginPassword = this.refs.loginPassword.getValue();
         fetch("/auth/login",{
             method: "post",
-            body: `loginName=${loginName}&loginPassword=${loginPassword}`,
+            body: `email=${loginName}&password=${loginPassword}`,
             credentials: 'include',
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+
 
         })
             .then((res) => {
