@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start": "nodemon src/server/app.js",
+    "bundle": "webpack",
     "start:dev": "webpack-dev-server --inline --content-base ./src/client/ --history-api-fallback",
     "start:prod": "webpack && node src/server/app.js"
   },
@@ -28,6 +28,7 @@
     "express": "^4.14.0",
     "if-env": "^1.0.0",
     "material-ui": "^0.16.0",
+    "nodemon": "^1.11.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
