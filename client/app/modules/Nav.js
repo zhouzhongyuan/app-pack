@@ -5,7 +5,7 @@ export default class Nav extends React.Component {
         return (
             <div style={{ display: 'flex', width: '100%', height: '100%' }}>
                 <div className="top-bar">
-                    <div className="top-bar-logo" style={{ display: 'flex', alignItems: 'center' }}><img src="./public/img/appbuild_text.png" alt="" /></div>
+                    <div className="top-bar-logo" style={{ display: 'flex', alignItems: 'center' }}><img src="/img/appbuild_text.png" alt="" /></div>
                     <ul
                         style={{ dispaly: 'flex', flexDirection: 'row' }}
                         className="top-bar-nav-menu"
