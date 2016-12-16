@@ -11,11 +11,11 @@ app.use(express.static('./client/dist/'))
 const authRoutes = require('./server/routes/auth.js');
 app.use('/auth', authRoutes);
 
-// handle every other route with index.html, which will contain
-// a script tag to your application's JavaScript file(s).
+// 对于任意的get返回index.html, 能够实现非主页刷新
 app.get('*', function (request, response){
-    response.sendFile(path.resolve('./client/index.html'))
+    response.sendFile( path.resolve('./server/static/index.html') )
 })
+
 
 app.listen(port)
 console.log("server started on port " + port)

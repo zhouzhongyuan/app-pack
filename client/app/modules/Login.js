@@ -16,7 +16,7 @@ export default class Login extends React.Component {
         }
         let loginName = this.refs.loginName.getValue();
         let loginPassword = this.refs.loginPassword.getValue();
-        fetch("/login",{
+        fetch("/auth/login",{
             method: "post",
             body: `loginName=${loginName}&loginPassword=${loginPassword}`,
             credentials: 'include',
