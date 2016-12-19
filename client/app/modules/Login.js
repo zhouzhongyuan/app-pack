@@ -4,6 +4,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
+import Auth from './Auth'
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -23,11 +24,13 @@ export default class Login extends React.Component {
             headers: new Headers({
                 'Content-Type': 'application/x-www-form-urlencoded'
             })
-
-
         })
+            .then((res) => res.json())
             .then((res) => {
-                if (res.ok) {
+                if (res.success) {
+                    //保存token
+                    Auth.authenticateUser(res.token);
+
                     browserHistory.push('/app');
                 } else if (res.status == 401) {
                     alert("Oops! You are not authorized.");
