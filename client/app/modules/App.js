@@ -7,9 +7,9 @@ export default class App extends React.Component {
             <div
                 className="app-setting"
             >
-                <section className="sidebar">
-                    <Sidebar />
-                </section>
+                {/*<section className="sidebar">*/}
+                    {/*<Sidebar />*/}
+                {/*</section>*/}
                 
                 <section className="content-wrapper">
                     {this.props.children}

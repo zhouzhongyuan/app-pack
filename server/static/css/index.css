@@ -1,3 +1,6 @@
+html{
+    background-color: rgb(205, 231, 199);
+}
 body{
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -82,6 +85,9 @@ body{
     display: flex;
     flex-direction: row;
     align-items:stretch;
+    margin-bottom: 48px;
+    /*background-color: rgb(88, 174, 67);*/
+
 }
 .app-setting > .sidebar{
     /*background-color: #2a2a2a;*/
@@ -90,7 +96,24 @@ body{
     border-right: 1px solid #9e9e9e;
 
 }
-.app-setting > .content-wrapper{
-    flex: 1;
+/*.app-setting > .content-wrapper{*/
+    /*flex: 1;*/
 
+/*}*/
+.content-wrapper{
+    margin: auto;
+    width: 640px;
+    background-color: #fff;
+    margin-bottom: 48px;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    word-wrap: break-word;
 }
+
+@media (max-width: 660px){
+    .content-wrapper{
+        width: 90%;
+        margin: auto;
+    }
+}
+

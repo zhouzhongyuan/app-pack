@@ -3,6 +3,13 @@ import {
     Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,
 }
     from 'material-ui/Table';
+import {Card, CardTitle, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+
 const styles = {
     propContainer: {
         width: 200,
@@ -41,6 +48,26 @@ const tableData = [
         status: '1.6 OR 2.0',
     }
 ];
+const labelStyle = {
+    fontSize: '20px',
+    fontWight: 'bold',
+    color: '#000000',
+
+}
+const inputStyle = {
+    padding: 8,
+    paddingLeft: 0,
+};
+const itemStyle = {
+    padding: '16px 17px',
+    marginTop: 2,
+}
+const radioStyle = {
+    paddingTop:'8px',
+    paddingBottom: '8px',
+    heigth:'24px',
+
+}
 export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
@@ -56,59 +83,96 @@ export default class BasicSetting extends React.Component {
             showRowHover: false,
         };
     }
+    componentDidMount(){
+
+    }
     render() {
         return (
-            <div>
-                <Table
-                    height={this.state.height}
-                    fixedHeader={this.state.fixedHeader}
-                    fixedFooter={this.state.fixedFooter}
-                    selectable={this.state.selectable}
-                    multiSelectable={this.state.multiSelectable}
-                >
-                    <TableHeader
-                        displaySelectAll={this.state.showCheckboxes}
-                        adjustForCheckbox={this.state.showCheckboxes}
-                        enableSelectAll={this.state.enableSelectAll}
-                    >
-                        <TableRow>
-                            <TableHeaderColumn colSpan="2" tooltip="应用基本设置" style={{ textAlign: 'center' }}>
-                                基本设置
-                            </TableHeaderColumn>
-                        </TableRow>
-                        <TableRow>
-                            <TableHeaderColumn tooltip="应用的设置项目">项目</TableHeaderColumn>
-                            <TableHeaderColumn tooltip="设置的值">值</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody
-                        displayRowCheckbox={this.state.showCheckboxes}
-                        deselectOnClickaway={this.state.deselectOnClickaway}
-                        showRowHover={this.state.showRowHover}
-                        stripedRows={this.state.stripedRows}
-                    >
-                        {tableData.map((row, index) => (
-                            <TableRow key={index} selected={row.selected}>
-                                <TableRowColumn>{row.name}</TableRowColumn>
-                                <TableRowColumn>{row.status}</TableRowColumn>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                    <TableFooter
-                        adjustForCheckbox={this.state.showCheckboxes}
-                    >
-                        <TableRow>
-                            <TableRowColumn>Name</TableRowColumn>
-                            <TableRowColumn>Status</TableRowColumn>
-                        </TableRow>
-                        <TableRow>
-                            <TableRowColumn colSpan="2" style={{ textAlign: 'center' }}>
-                                Super Footer
-                            </TableRowColumn>
-                        </TableRow>
-                    </TableFooter>
-                </Table>
+            <div
+                style={{
+                    padding: '34px 17px'
+
+                }}
+            >
+                <div style={itemStyle}>
+                    <div style={labelStyle}>应用名称</div>
+                    <TextField
+                        style={inputStyle}
+                        hintText="您的App的名称"
+                    />
+                </div>
+                <div style={itemStyle}>
+
+                    <div style={labelStyle}>应用描述</div>
+                    <TextField
+                        style={inputStyle}
+                        multiLine={true}
+                        hintText="应用简介"
+                    />
+                </div>
+                <div style={itemStyle}>
+
+                    <div style={labelStyle}>代码地址</div>
+                    <TextField
+                        style={inputStyle}
+                        fullWidth={true}
+                        hintText="您放置的SVN地址"
+                    />
+                </div>
+
+                <div style={itemStyle}>
+                    <div style={labelStyle}>应用ID</div>
+                    <TextField
+                        style={inputStyle}
+                        hintText="应用ID"
+                    />
+                </div>
+                <div style={itemStyle}>
+                    <div style={labelStyle}>创建时间</div>
+                    <TextField
+                        style={inputStyle}
+                        hintText="创建时间"
+                    />
+                </div>
+                <div style={itemStyle}>
+                    <div style={labelStyle}>Yigo版本</div>
+                        <div
+                            style={{
+                                padding:'8px',
+                                paddingLeft:0
+                            }}
+                        >
+                            <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
+                                <RadioButton
+                                    value="light"
+                                    label="Yigo 1.6"
+                                    style={radioStyle}
+                                />
+                                <RadioButton
+                                    value="ludicrous"
+                                    label="Yigo 2.0"
+                                    style={radioStyle}
+
+                                />
+                                <RadioButton
+                                    value="custom"
+                                    label="自定义: "
+                                    style={radioStyle}
+                                >
+                                </RadioButton>
+                            </RadioButtonGroup>
+                            <TextField
+                                style={inputStyle}
+                                type="url"
+                                hintText="输入完整svn地址"
+                            />
+                        </div>
+                </div>
+
             </div>
+
         );
     }
 }
+
+
