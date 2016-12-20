@@ -108,11 +108,9 @@ export default class BasicSetting extends React.Component {
                         errorStyle={styles.errorStyle}
                     />
                 </div>
-                <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>Yigo版本</div>
-                    <VersionSelect />
-                </div>
-
+                <VersionSelect
+                    edit={false}
+                />
                 <div style={styles.itemStyle}>
                     <div style={styles.labelStyle}>应用ID <span>****</span></div>
                 </div>
