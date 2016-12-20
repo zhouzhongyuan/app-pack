@@ -22,13 +22,31 @@ const styles = {
         heigth: '24px',
 
     },
+    // labelStyle: {
+    //     fontSize: '20px',
+    //     fontWight: 'bold',
+    //     color: '#000000',
+    //     display:'flex',
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between',
+    // },
     labelStyle: {
         fontSize: '20px',
         fontWight: 'bold',
         color: '#000000',
+
         display:'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    contentStyle: {
+        flex:1,
+        paddingLeft: 20
+    },
+    labelTitleStyle: {
+        width: 80,
+        textAlign: 'justify',
+        textAlignLast: 'justify',
     },
     itemStyle: {
         padding: '16px 17px',
@@ -82,12 +100,17 @@ export default class VersionSelect extends React.Component {
                     !this.state.edit ?
                         (
                             <div style={styles.labelStyle}>
-                                <span>Yigo版本</span>
-                                <span>Yigo 1.6</span>
-                                <ModeEdit
-                                    style={iconStyles}
-                                    onClick={this.onEditButtonClick}
-                                />
+                                <span style={styles.labelTitleStyle}>Yigo版本</span>
+                                <span
+                                    style={styles.contentStyle}
+                                >
+                                    <span>Yigo 1.6</span>
+                                    <ModeEdit
+                                        style={iconStyles}
+                                        onClick={this.onEditButtonClick}
+                                    />
+                                </span>
+
                             </div>
                         ) :
                         (

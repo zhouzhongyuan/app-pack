@@ -5,6 +5,11 @@ import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import VersionSelect from '../../components/VersionSelect'
 import validator from 'validator';
 
+import ContentCopy from 'material-ui/svg-icons/content/content-copy';
+const iconStyles = {
+    marginRight: 24,
+};
+
 const styles={
     errorStyle: {
         paddingTop: 5
@@ -13,6 +18,19 @@ const styles={
         fontSize: '20px',
         fontWight: 'bold',
         color: '#000000',
+
+        display:'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    contentStyle: {
+        flex:1,
+        paddingLeft: 20
+    },
+    labelTitleStyle: {
+        width: 80,
+        textAlign: 'justify',
+        textAlignLast: 'justify',
     },
     inputStyle: {
         padding: 8,
@@ -112,10 +130,33 @@ export default class BasicSetting extends React.Component {
                     edit={false}
                 />
                 <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>应用ID <span>****</span></div>
+                    <div style={styles.labelStyle}>
+                        <span  style={styles.labelTitleStyle}>应用ID</span>
+                        <span
+                            style={styles.contentStyle}
+                        >
+                            <span>****</span>
+                            <ContentCopy
+                                style={iconStyles}
+                            />
+                        </span>
+
+                    </div>
                 </div>
                 <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>创建时间 <span>****</span></div>
+                    <div style={styles.labelStyle}>
+                        <span style={styles.labelTitleStyle}>创建时间</span>
+                        <span
+                            style={styles.contentStyle}
+                        >
+
+                        <span>****</span>
+                        <ContentCopy
+                            style={iconStyles}
+                        />
+                        </span>
+
+                    </div>
                 </div>
 
 
