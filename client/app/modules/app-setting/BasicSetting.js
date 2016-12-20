@@ -1,53 +1,10 @@
 import React from 'react';
-import {
-    Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,
-}
-    from 'material-ui/Table';
-import {Card, CardTitle, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import ActionFavorite from 'material-ui/svg-icons/action/favorite';
-import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
-const styles = {
-    propContainer: {
-        width: 200,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-    },
-    propToggleHeader: {
-        margin: '20px auto 10px',
-    },
-};
-const tableData = [
-    {
-        name: '应用名称',
-        status: '车掌柜',
-        selected: true,
-    },
-    {
-        name: '应用描述',
-        status: '类似淘宝的汽车配件商城',
-    },
-    {
-        name: '上传地址',
-        status: 'http://svn.appcan.cn/sourceCode/114/766/82/trunk',
-        selected: true,
-    },
-    {
-        name: '应用ID',
-        status: '11476682',
-    },
-    {
-        name: '创建时间',
-        status: '2015-11-19 13:47:39',
-    },
-    {
-        name: 'Yigo版本',
-        status: '1.6 OR 2.0',
-    }
-];
+import VersionSelect from '../../components/VersionSelect'
+
+
 const labelStyle = {
     fontSize: '20px',
     fontWight: 'bold',
@@ -71,20 +28,6 @@ const radioStyle = {
 export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            fixedHeader: false,
-            fixedFooter: false,
-            stripedRows: false,
-            selectable: false,
-            multiSelectable: false,
-            enableSelectAll: false,
-            deselectOnClickaway: true,
-            showCheckboxes: false,
-            showRowHover: false,
-        };
-    }
-    componentDidMount(){
-
     }
     render() {
         return (
@@ -136,37 +79,7 @@ export default class BasicSetting extends React.Component {
                 </div>
                 <div style={itemStyle}>
                     <div style={labelStyle}>Yigo版本</div>
-                        <div
-                            style={{
-                                padding:'8px',
-                                paddingLeft:0
-                            }}
-                        >
-                            <RadioButtonGroup name="shipSpeed" defaultSelected="not_light">
-                                <RadioButton
-                                    value="light"
-                                    label="Yigo 1.6"
-                                    style={radioStyle}
-                                />
-                                <RadioButton
-                                    value="ludicrous"
-                                    label="Yigo 2.0"
-                                    style={radioStyle}
-
-                                />
-                                <RadioButton
-                                    value="custom"
-                                    label="自定义: "
-                                    style={radioStyle}
-                                >
-                                </RadioButton>
-                            </RadioButtonGroup>
-                            <TextField
-                                style={inputStyle}
-                                type="url"
-                                hintText="输入完整svn地址"
-                            />
-                        </div>
+                    <VersionSelect />
                 </div>
 
             </div>
