@@ -10,6 +10,7 @@ var config = {
         path: BUILD_DIR,
         filename: 'app.js'
     },
+    devtool:'eval-source-map',
     module : {
         loaders : [
             {
