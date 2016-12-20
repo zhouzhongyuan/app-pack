@@ -90,6 +90,7 @@ export default class BasicSetting extends React.Component {
                     <TextField
                         style={styles.inputStyle}
                         multiLine={true}
+                        rowsMax={10}
                         hintText="应用简介"
                         onChange={this.onChangeAppDescription}
                         errorText={this.state.errorTextOfAppDescription}
@@ -101,26 +102,10 @@ export default class BasicSetting extends React.Component {
                     <div style={styles.labelStyle}>代码地址</div>
                     <TextField
                         style={styles.inputStyle}
-                        fullWidth={true}
                         hintText="您放置的SVN地址"
                         onChange={this.onChangeAppSourceLink}
                         errorText={this.state.errorTextOfAppSourceLink}
                         errorStyle={styles.errorStyle}
-                    />
-                </div>
-
-                <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>应用ID</div>
-                    <TextField
-                        style={styles.inputStyle}
-                        hintText="应用ID"
-                    />
-                </div>
-                <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>创建时间</div>
-                    <TextField
-                        style={styles.inputStyle}
-                        hintText="创建时间"
                     />
                 </div>
                 <div style={styles.itemStyle}>
@@ -128,10 +113,17 @@ export default class BasicSetting extends React.Component {
                     <VersionSelect />
                 </div>
 
+                <div style={styles.itemStyle}>
+                    <div style={styles.labelStyle}>应用ID <span>****</span></div>
+                </div>
+                <div style={styles.itemStyle}>
+                    <div style={styles.labelStyle}>创建时间 <span>****</span></div>
+                </div>
+
+
             </div>
 
         );
     }
 }
-
-
+// TODO SVN 账号，密码，包名。 版本号。

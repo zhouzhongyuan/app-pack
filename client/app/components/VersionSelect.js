@@ -9,7 +9,7 @@ const styles = {
         paddingTop: 5
     },
     inputStyle: {
-        left: 20,
+        left: 40,
     },
     radioStyle: {
         paddingTop:'8px',
