@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 import VersionSelect from '../../components/VersionSelect'
+import EditableTextField from '../../components/EditableTextField'
 import validator from 'validator';
 
 import ContentCopy from 'material-ui/svg-icons/content/content-copy';
@@ -45,23 +46,14 @@ const styles={
 export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            errorTextOfAppName: '',
-            errorTextOfAppDescription: '',
-            errorTextOfAppSourceLink: '',
-
-        }
-        this.onChangeAppName = this.onChangeAppName.bind(this);
-        this.onChangeAppDescription = this.onChangeAppDescription.bind(this);
-        this.onChangeAppSourceLink = this.onChangeAppSourceLink.bind(this);
     }
     onChangeAppName(e){
         const isValidate = validator.isLength(e.target.value, {min:2, max: 4});
         if(!isValidate){
             const errorText="App名称有问题，一般为2～4个字符"
-            this.setState({errorTextOfAppName: errorText});
+            this.setState({errorText: errorText});
         }else {
-            this.setState({errorTextOfAppName:''});
+            this.setState({errorText:''});
 
         }
     }
@@ -69,9 +61,9 @@ export default class BasicSetting extends React.Component {
         const isValidate = validator.isLength(e.target.value, {min:10, max: 300});
         if(!isValidate){
             const errorText="App描述有问题，一般为10～300个字符"
-            this.setState({errorTextOfAppDescription: errorText});
+            this.setState({errorText: errorText});
         }else {
-            this.setState({errorTextOfAppDescription:''});
+            this.setState({errorText:''});
 
         }
     }
@@ -79,9 +71,9 @@ export default class BasicSetting extends React.Component {
         const isValidate = validator.isURL(e.target.value);
         if(!isValidate){
             const errorText="Url地址不正确，请输入完整的地址"
-            this.setState({errorTextOfAppSourceLink: errorText});
+            this.setState({errorText: errorText});
         }else {
-            this.setState({errorTextOfAppSourceLink:''});
+            this.setState({errorText:''});
         }
     }
     render() {
@@ -92,40 +84,26 @@ export default class BasicSetting extends React.Component {
 
                 }}
             >
-                <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>应用名称</div>
-                    <TextField
-                        style={styles.inputStyle}
-                        hintText="您的App的名称"
-                        onChange={this.onChangeAppName}
-                        errorText={this.state.errorTextOfAppName}
-                        errorStyle={styles.errorStyle}
-                    />
-                </div>
-                <div style={styles.itemStyle}>
-
-                    <div style={styles.labelStyle}>应用描述</div>
-                    <TextField
-                        style={styles.inputStyle}
-                        multiLine={true}
-                        rowsMax={10}
-                        hintText="应用简介"
-                        onChange={this.onChangeAppDescription}
-                        errorText={this.state.errorTextOfAppDescription}
-                        errorStyle={styles.errorStyle}
-                    />
-                </div>
-                <div style={styles.itemStyle}>
-
-                    <div style={styles.labelStyle}>代码地址</div>
-                    <TextField
-                        style={styles.inputStyle}
-                        hintText="您放置的SVN地址"
-                        onChange={this.onChangeAppSourceLink}
-                        errorText={this.state.errorTextOfAppSourceLink}
-                        errorStyle={styles.errorStyle}
-                    />
-                </div>
+                <EditableTextField
+                    label="应用名称"
+                    hintText="您的App的名称"
+                    value="紫江商贸"
+                    validateHandler={this.onChangeAppName}
+                />
+                <EditableTextField
+                    label="应用描述"
+                    hintText="应用简介"
+                    value="紫江是一家……"
+                    validateHandler={this.onChangeAppDescription}
+                    multiLine={true}
+                    rowsMax={10}
+                />
+                <EditableTextField
+                    label="代码地址"
+                    hintText="您放置的SVN地址"
+                    value="http://svn.com"
+                    validateHandler={this.onChangeAppSourceLink}
+                />
                 <VersionSelect
                     edit={false}
                 />
