@@ -52,12 +52,37 @@ export default class AppList extends React.Component {
             deselectOnClickaway: true,
             showCheckboxes: false,
             createAppOpen: false,
+            tableData:[],
         };
         this.createApp = this.createApp.bind(this);
 
     }
     createApp(){
         this.setState({createAppOpen: true});
+    }
+    componentDidMount(){
+        fetch(`/api/app`,{
+            method: "get",
+            credentials: 'include',
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.success) {
+                    console.log(res.data);
+                    const data = res.data;
+                    this.setState({
+                        tableData: data,
+                    });
+                } else if (res.status == 401) {
+                    alert("Oops! You are not authorized.");
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
     render() {
         return (
@@ -97,15 +122,15 @@ export default class AppList extends React.Component {
                         showRowHover={this.state.showRowHover}
                         stripedRows={this.state.stripedRows}
                     >
-                        {tableData.map( (row, index) => (
+                        {this.state.tableData.map( (row, index) => (
                             <TableRow key={index} striped={true}>
                                 <TableRowColumn>{row.status}</TableRowColumn>
                                 <TableRowColumn>{row.name}</TableRowColumn>
                                 <TableRowColumn>{index}</TableRowColumn>
                                 <TableRowColumn>{row.lastVersion}</TableRowColumn>
                                 <TableRowColumn>{row.installCapacity}</TableRowColumn>
-                                <TableRowColumn><Link className="button" to="/app/basic">{row.manage}</Link></TableRowColumn>
-                                <TableRowColumn>{row.dev}</TableRowColumn>
+                                <TableRowColumn><Link className="button" to={"/app/basic?id="+row.id}>管理</Link></TableRowColumn>
+                                <TableRowColumn>开发</TableRowColumn>
                             </TableRow>
                         ))}
                     </TableBody>

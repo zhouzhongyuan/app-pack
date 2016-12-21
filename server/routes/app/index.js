@@ -47,6 +47,22 @@ function findApp(id) {
         });
     });
 }
+function findAppList() {
+    return new Promise((resolve, reject) => {
+        App.find({}, (err, app) => {
+            if (err) {
+                reject(err);
+            }
+            if (!app) {
+                const error = new Error('Incorrect id');
+                error.name = 'IncorrectCredentialsError';
+                console.log('no this app');
+                reject(error);
+            }
+            resolve(app);
+        });
+    });
+}
 
 // Read
 router.get('/:id', (req, res) => {
@@ -55,6 +71,19 @@ router.get('/:id', (req, res) => {
     findApp(id)
         .then((data) => {
             console.log(data.name);
+            return res.json({
+                success: true,
+                data: data,
+            });
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+});
+router.get('/', (req, res) => {
+    findAppList()
+        .then((data) => {
             return res.json({
                 success: true,
                 data: data,

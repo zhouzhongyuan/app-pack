@@ -110,7 +110,7 @@ export default class BasicSetting extends React.Component {
                 />
                 <NotEditableTextField
                     label="创建时间"
-                    value={this.state.createTime}
+                    value={new Date(this.state.createTime).toLocaleString()}
 
                 />
             </div>
