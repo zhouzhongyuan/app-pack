@@ -39,7 +39,7 @@ function findApp(id) {
             if (!app) {
                 const error = new Error('Incorrect id');
                 error.name = 'IncorrectCredentialsError';
-                console.loog('no this app');
+                console.log('no this app');
                 reject(error);
             }
             resolve(app);

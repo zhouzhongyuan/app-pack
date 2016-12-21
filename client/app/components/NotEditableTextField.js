@@ -51,7 +51,6 @@ export default class EditableTextField extends React.Component {
         super(props);
     }
     render() {
-        console.log('render');
         return (
             <div style={styles.itemStyle}>
                 <div style={styles.labelStyle}>

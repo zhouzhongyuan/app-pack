@@ -9,6 +9,10 @@ import validator from 'validator';
 export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
+        this.state={
+            name:'',
+            description:'',
+        }
     }
     onChangeAppName(e){
         const isValidate = validator.isLength(e.target.value, {min:2, max: 4});
@@ -39,6 +43,31 @@ export default class BasicSetting extends React.Component {
             this.setState({errorText:''});
         }
     }
+    componentDidMount(){
+        fetch("/app/1013",{
+            method: "get",
+            credentials: 'include',
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded'
+            })
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                if (res.success) {
+                    console.log(res.data);
+                    const data = res.data;
+                    this.setState({
+                        name: data.name,
+                        description: data.description,
+                    });
+                } else if (res.status == 401) {
+                    alert("Oops! You are not authorized.");
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
     render() {
         return (
             <div
@@ -50,13 +79,13 @@ export default class BasicSetting extends React.Component {
                 <EditableTextField
                     label="应用名称"
                     hintText="您的App的名称"
-                    value="紫江商贸"
+                    value={this.state.name}
                     validateHandler={this.onChangeAppName}
                 />
                 <EditableTextField
                     label="应用描述"
                     hintText="应用简介"
-                    value="紫江是一家……"
+                    value={this.state.description}
                     validateHandler={this.onChangeAppDescription}
                     multiLine={true}
                     rowsMax={10}

@@ -66,7 +66,6 @@ export default class EditableTextField extends React.Component {
         this.setState({edit:true});
     }
     onSaveButtonClick(e){
-        console.log(this.refs.textField.getValue());
         if(! this.state.errorText){
             const appName = this.refs.textField.getValue();
             this.setState({value: appName});
@@ -83,7 +82,6 @@ export default class EditableTextField extends React.Component {
             })
                 .then((res) => res.json())
                 .then((res) => {
-                    console.log(res);
                     if(res.success){
                         this.setState({
                             snackBarOpen: true,
@@ -100,8 +98,13 @@ export default class EditableTextField extends React.Component {
             snackBarOpen: false,
         });
     }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+        this.setState({
+            value:nextProps.value,
+        });
+    }
     render() {
-        console.log('render');
         return (
                 <div style={styles.itemStyle}>
                     {
