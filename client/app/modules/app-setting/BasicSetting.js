@@ -1,47 +1,10 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 import VersionSelect from '../../components/VersionSelect'
 import EditableTextField from '../../components/EditableTextField'
+import NotEditableTextField from '../../components/NotEditableTextField'
 import validator from 'validator';
-
-import ContentCopy from 'material-ui/svg-icons/content/content-copy';
-const iconStyles = {
-    marginRight: 24,
-};
-
-const styles={
-    errorStyle: {
-        paddingTop: 5
-    },
-    labelStyle: {
-        fontSize: '20px',
-        fontWight: 'bold',
-        color: '#000000',
-
-        display:'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    contentStyle: {
-        flex:1,
-        paddingLeft: 20
-    },
-    labelTitleStyle: {
-        width: 80,
-        textAlign: 'justify',
-        textAlignLast: 'justify',
-    },
-    inputStyle: {
-        padding: 8,
-        paddingLeft: 0,
-    },
-    itemStyle: {
-        padding: '16px 17px',
-        marginTop: 2,
-    },
-}
 
 export default class BasicSetting extends React.Component {
     constructor(props) {
@@ -107,37 +70,16 @@ export default class BasicSetting extends React.Component {
                 <VersionSelect
                     edit={false}
                 />
-                <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>
-                        <span  style={styles.labelTitleStyle}>应用ID</span>
-                        <span
-                            style={styles.contentStyle}
-                        >
-                            <span>****</span>
-                            <ContentCopy
-                                style={iconStyles}
-                            />
-                        </span>
+                <NotEditableTextField
+                    label="应用ID"
+                    value="001"
 
-                    </div>
-                </div>
-                <div style={styles.itemStyle}>
-                    <div style={styles.labelStyle}>
-                        <span style={styles.labelTitleStyle}>创建时间</span>
-                        <span
-                            style={styles.contentStyle}
-                        >
+                />
+                <NotEditableTextField
+                    label="创建时间"
+                    value="2016年12月21日上午8点20分"
 
-                        <span>****</span>
-                        <ContentCopy
-                            style={iconStyles}
-                        />
-                        </span>
-
-                    </div>
-                </div>
-
-
+                />
             </div>
 
         );
