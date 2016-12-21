@@ -60,7 +60,6 @@ export default class AppList extends React.Component {
         this.setState({createAppOpen: true});
     }
     render() {
-        console.log(this.state.createAppOpen);
         return (
             <div>
                 <CreateApp

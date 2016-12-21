@@ -1,18 +1,9 @@
 const mongoose = require('mongoose');
-
-
-
 const autoIncrement = require('mongoose-auto-increment');   //自增ID 模块
 autoIncrement.initialize(mongoose.connection);        //初始化
 
-
 // define the App model schema
 const AppSchema = new mongoose.Schema({
-    // id: {
-    //     type: String,
-    //     index: true,
-    //     unique: true
-    // },
     createTime: Date,
     name: String,
     description: String,
@@ -26,8 +17,8 @@ const AppSchema = new mongoose.Schema({
     icon: String,
     plugin: String
 });
-
-AppSchema.plugin(autoIncrement.plugin, {               //自增ID配置
+//自增ID配置
+AppSchema.plugin(autoIncrement.plugin, {
     model: 'Apps',
     field: 'id',
     startAt: 1000,

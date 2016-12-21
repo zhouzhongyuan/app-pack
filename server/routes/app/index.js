@@ -22,22 +22,47 @@ router.post('/', (req, res, next) => {
                 success: false
             });
         }
-
         // 返回结果
         return res.json({
             success: true,
         });
     });
 
-
 });
 
+function findApp(id) {
+    return new Promise((resolve, reject) => {
+        App.findOne({ id: id }, (err, app) => {
+            if (err) {
+                reject(err);
+            }
+            if (!app) {
+                const error = new Error('Incorrect id');
+                error.name = 'IncorrectCredentialsError';
+                console.loog('no this app');
+                reject(error);
+            }
+            resolve(app);
+        });
+    });
+}
 
 // Read
-router.get('/login', (req, res, next) => {
-    return res.json({
-        success: false,
-    });
+router.get('/:id', (req, res) => {
+    console.log();
+    const id = req.params.id;
+    findApp(id)
+        .then((data) => {
+            console.log(data.name);
+            return res.json({
+                success: true,
+                data: data,
+            });
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
 });
 // Update
 router.put('/', (req, res, next) => {
