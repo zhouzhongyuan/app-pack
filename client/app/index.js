@@ -9,6 +9,7 @@ import Home from './modules/Home';
 import Nav from './modules/Nav';
 import Login from './modules/Login';
 import App from './modules/App';
+import AppList from './containers/AppList.js';
 import BasicSetting from './modules/app-setting/BasicSetting';
 import IconSetting from './modules/app-setting/Icon';
 injectTapEventPlugin();
@@ -31,7 +32,8 @@ ReactDOM.render(
                 <Route path="/doc" component={Doc} />
                 <Route path="/login" component={Login} />
                 <Route path="/app" component={App} onEnter={requireAuth} >
-                    <IndexRoute component={BasicSetting} />
+                    <IndexRoute component={AppList} />
+                    <Route path="list" component={AppList} />
                     <Route path="basic" component={BasicSetting} />
                     <Route path="icon" component={IconSetting} />
                 </Route>

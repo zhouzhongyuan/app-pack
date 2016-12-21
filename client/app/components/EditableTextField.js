@@ -5,7 +5,7 @@ import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import validator from 'validator';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ContentSave from 'material-ui/svg-icons/content/save';
-
+import Snackbar from 'material-ui/Snackbar';
 
 const iconStyles = {
     marginRight: 24,
@@ -51,16 +51,15 @@ export default class EditableTextField extends React.Component {
             edit: this.props.edit || false,
             label: this.props.label,
             value: this.props.value,
-            // tmpValue: this.props.value,
             hintText: this.props.hintText,
+            snackBarOpen: this.props.snackBarOpen || false,
         }
         this.onChange = this.onChange.bind(this);
         this.onEditButtonClick = this.onEditButtonClick.bind(this);
         this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+        this.handleRequestClose = this.handleRequestClose.bind(this);
     }
     onChange(e){
-        // this.setState({tmpValue: e.target.value});
-        // console.log(tmpValue);
         this.props.validateHandler.call(this, e);
     }
     onEditButtonClick(e){
@@ -69,9 +68,37 @@ export default class EditableTextField extends React.Component {
     onSaveButtonClick(e){
         console.log(this.refs.textField.getValue());
         if(! this.state.errorText){
-            this.setState({value: this.refs.textField.getValue()});
+            const appName = this.refs.textField.getValue();
+            this.setState({value: appName});
             this.setState({edit:false});
+            // 保存数据到server
+            // appsetting/basic/appname
+            fetch("/appsetting/basic/appname", {
+                method: "post",
+                body: `appName=${appName}`,
+                credentials: 'include',
+                headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                })
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    console.log(res);
+                    if(res.success){
+                        this.setState({
+                            snackBarOpen: true,
+                        });
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
+    }
+    handleRequestClose(){
+        this.setState({
+            snackBarOpen: false,
+        });
     }
     render() {
         console.log('render');
@@ -115,6 +142,12 @@ export default class EditableTextField extends React.Component {
                                 </div>
                             )
                     }
+                    <Snackbar
+                        open={this.state.snackBarOpen}
+                        message="修改成功"
+                        autoHideDuration={4000}
+                        onRequestClose={this.handleRequestClose}
+                    />
                 </div>
         );
     }
