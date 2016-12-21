@@ -37,7 +37,7 @@ export default class CreateApp extends React.Component {
     createApp(){
         let name = this.refs.name.getValue();
         let description = this.refs.description.getValue();
-        fetch("/app",{
+        fetch("/api/app",{
             method: "post",
             body: `name=${name}&description=${description}`,
             credentials: 'include',
@@ -49,7 +49,7 @@ export default class CreateApp extends React.Component {
             .then((res) => {
                 console.log(res);
                 if (res.success) {
-                    // browserHistory.push('/app');
+                    browserHistory.push(`/app/basic?id=${res.id}`);
                 } else if (res.status == 401) {
                     alert("Oops! You are not authorized.");
                 }

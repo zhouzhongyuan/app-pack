@@ -9,9 +9,12 @@ import validator from 'validator';
 export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.location.query.id);
         this.state={
-            name:'',
-            description:'',
+            id:this.props.location.query.id || '',
+            name:this.props.name || '',
+            description: this.props.description || '',
+            createTime: this.props.createTime || '',
         }
     }
     onChangeAppName(e){
@@ -44,7 +47,7 @@ export default class BasicSetting extends React.Component {
         }
     }
     componentDidMount(){
-        fetch("/app/1013",{
+        fetch(`/api/app/${this.state.id}`,{
             method: "get",
             credentials: 'include',
             headers: new Headers({
@@ -59,6 +62,7 @@ export default class BasicSetting extends React.Component {
                     this.setState({
                         name: data.name,
                         description: data.description,
+                        createTime: data.createTime,
                     });
                 } else if (res.status == 401) {
                     alert("Oops! You are not authorized.");
@@ -101,12 +105,12 @@ export default class BasicSetting extends React.Component {
                 />
                 <NotEditableTextField
                     label="应用ID"
-                    value="001"
+                    value={this.state.id}
 
                 />
                 <NotEditableTextField
                     label="创建时间"
-                    value="2016年12月21日上午8点20分"
+                    value={this.state.createTime}
 
                 />
             </div>

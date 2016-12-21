@@ -16,7 +16,7 @@ router.post('/', (req, res, next) => {
     };
 
     const newApp = new App(appData);
-    newApp.save((err) => {
+    newApp.save((err, doc) => {
         if (err) {
             return res.json({
                 success: false
@@ -25,6 +25,7 @@ router.post('/', (req, res, next) => {
         // 返回结果
         return res.json({
             success: true,
+            id:doc.id,
         });
     });
 

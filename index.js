@@ -31,7 +31,7 @@ const appsettingsBasicRoutes = require('./server/routes/appsetting/basic/');
 app.use('/appsetting/basic', appsettingsBasicRoutes);
 // app
 const appRoutes = require('./server/routes/app/');
-app.use('/app', appRoutes);
+app.use('/api/app', appRoutes);
 
 // 对于任意的get返回index.html, 能够实现非主页刷新
 app.get('*', function (request, response){
