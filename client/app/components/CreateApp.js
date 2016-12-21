@@ -6,7 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import EditableTextField from './EditableTextField'
-
+import { browserHistory } from 'react-router';
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
  * in this example [FlatButtons](/#/components/flat-button).
@@ -22,6 +22,7 @@ export default class CreateApp extends React.Component {
         };
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.createApp = this.createApp.bind(this);
 
 
     }
@@ -31,6 +32,9 @@ export default class CreateApp extends React.Component {
     };
 
     handleClose(){
+        this.setState({open: false});
+    };
+    createApp(){
         let name = this.refs.name.getValue();
         let description = this.refs.description.getValue();
         fetch("/app",{
@@ -45,19 +49,16 @@ export default class CreateApp extends React.Component {
             .then((res) => {
                 console.log(res);
                 if (res.success) {
-                    //保存token
-                    Auth.authenticateUser(res.token);
-
-                    browserHistory.push('/app');
+                    // browserHistory.push('/app');
                 } else if (res.status == 401) {
                     alert("Oops! You are not authorized.");
                 }
+                this.setState({open: false});
             })
             .catch((err) => {
                 console.log(err)
             })
-        //this.setState({open: false});
-    };
+    }
 
     render() {
         const actions = [
@@ -70,7 +71,7 @@ export default class CreateApp extends React.Component {
                 label="确定"
                 primary={true}
                 keyboardFocused={true}
-                onTouchTap={this.handleClose}
+                onTouchTap={this.createApp}
             />,
         ];
 
