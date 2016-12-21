@@ -24,7 +24,11 @@ const styles={
     },
     contentStyle: {
         flex:1,
-        paddingLeft: 20
+        paddingLeft: 20,
+        // width: 263,
+        overflow:'hidden',
+        whiteSpace: 'nowrap',
+        textOverflow: 'ellipsis',
     },
     labelTitleStyle: {
         width: 80,
