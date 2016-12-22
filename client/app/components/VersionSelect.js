@@ -35,12 +35,12 @@ const styles = {
         fontWight: 'bold',
         color: '#000000',
 
-        display:'flex',
+        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
     contentStyle: {
-        flex:1,
+        flex: 1,
         paddingLeft: 20
     },
     labelTitleStyle: {
@@ -49,7 +49,7 @@ const styles = {
         textAlignLast: 'justify',
     },
     itemStyle: {
-        padding: '16px 17px',
+        padding: '16px 0',
         marginTop: 2,
     },
 };
@@ -87,12 +87,15 @@ export default class VersionSelect extends React.Component {
 
         }
     }
-    onEditButtonClick(e){
-        this.setState({edit:true});
+
+    onEditButtonClick(e) {
+        this.setState({edit: true});
     }
-    onSaveButtonClick(e){
-        this.setState({edit:false});
+
+    onSaveButtonClick(e) {
+        this.setState({edit: false});
     }
+
     render() {
         return (
             <div style={styles.itemStyle}>

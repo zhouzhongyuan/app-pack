@@ -37,7 +37,7 @@ const styles={
         paddingLeft: 0,
     },
     itemStyle: {
-        padding: '16px 17px',
+        padding: '16px 0',
         marginTop: 2,
     },
 }

@@ -1,42 +1,8 @@
 import React from 'react';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
     from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
-import RaisedButton from 'material-ui/RaisedButton';
 import CreateApp from '../components/CreateApp'
-
 import { Link } from 'react-router';
-const styles = {
-    propContainer: {
-        width: 200,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-    },
-    propToggleHeader: {
-        margin: '20px auto 10px',
-    },
-};
-
-const tableData = [
-    {
-        name: '紫江商贸',
-        status: '图片1',
-        lastVersion: '0.0.1',
-        installCapacity: '0',
-        manage: '管理',
-        dev: '开发',
-    },
-    {
-        name: '万华物流',
-        status: '图片2',
-        lastVersion: '0.0.1',
-        installCapacity: '0',
-        manage: '管理',
-        dev: '开发',
-    },
-];
-
 export default class AppList extends React.Component {
     constructor(props) {
         super(props);

@@ -75,10 +75,6 @@ export default class BasicSetting extends React.Component {
     render() {
         return (
             <div
-                style={{
-                    padding: '34px 17px'
-
-                }}
             >
                 <EditableTextField
                     label="应用名称"

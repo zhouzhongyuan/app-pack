@@ -1,5 +1,5 @@
 html{
-    background-color: rgb(205, 231, 199);
+    /*background-color: rgb(205, 231, 199);*/
 }
 body{
     font-family: 'Roboto', sans-serif;
@@ -100,20 +100,23 @@ body{
     /*!*flex: 1;*!*/
 
 /*!*}*!*/
-.content-wrapper{
-    margin: auto;
-    width: 640px;
-    background-color: #fff;
-    margin-bottom: 48px;
-    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
-    word-wrap: break-word;
-}
+/*.content-wrapper{*/
+    /*!*margin: auto;*!*/
+    /*!*width: 640px;*!*/
+    /*!*background-color: #fff;*!*/
+    /*!*margin-bottom: 48px;*!*/
+    /*!*-webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);*!*/
+    /*!*box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);*!*/
+    /*word-wrap: break-word;*/
+/*}*/
 
-@media (max-width: 660px){
-    .content-wrapper{
-        width: 99%;
-        margin: auto;
-    }
+/*@media (max-width: 660px){*/
+    /*.content-wrapper{*/
+        /*width: 99%;*/
+        /*margin: auto;*/
+    /*}*/
+/*}*/
+.app-setting{
+    /*margin: 48px 72px;*/
 }
 
