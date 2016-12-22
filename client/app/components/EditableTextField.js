@@ -99,7 +99,6 @@ export default class EditableTextField extends React.Component {
         });
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.setState({
             value:nextProps.value,
         });

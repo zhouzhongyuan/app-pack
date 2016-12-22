@@ -61,10 +61,10 @@ export default class Nav extends React.Component {
     constructor(props) {
         super(props);
         const pathname = this.props.location.pathname;
-        console.log(pathname);
         if(pathname === '/'){
             this.state = {
                 open: false,
+                docked: false,
                 paddingLeft : 0,
             };
         } else {
@@ -118,6 +118,7 @@ export default class Nav extends React.Component {
                     width={256}
                     open={this.state.open}
                     docked={this.state.docked}
+                    onRequestChange={(open) => this.setState({open})}
                 >
                     <AppBar
                         title="App Pack"
