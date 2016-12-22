@@ -2,17 +2,9 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
-import EditableTextField from './EditableTextField'
-import { browserHistory } from 'react-router';
-/**
- * Dialog with action buttons. The actions are passed in as an array of React objects,
- * in this example [FlatButtons](/#/components/flat-button).
- *
- * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
- */
+import {browserHistory} from 'react-router';
+
 export default class CreateApp extends React.Component {
     constructor(props) {
         super(props);
@@ -23,21 +15,20 @@ export default class CreateApp extends React.Component {
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.createApp = this.createApp.bind(this);
-
-
     }
 
-    handleOpen(){
+    handleOpen() {
         this.setState({open: true});
     };
 
-    handleClose(){
+    handleClose() {
         this.setState({open: false});
     };
-    createApp(){
+
+    createApp() {
         let name = this.refs.name.getValue();
         let description = this.refs.description.getValue();
-        fetch("/api/app",{
+        fetch("/api/app", {
             method: "post",
             body: `name=${name}&description=${description}`,
             credentials: 'include',
@@ -92,15 +83,9 @@ export default class CreateApp extends React.Component {
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                     contentStyle={{
-                        maxWidth:600,
+                        maxWidth: 600,
                     }}
                 >
-                    {/*<EditableTextField*/}
-                        {/*label="应用名称"*/}
-                        {/*hintText="您的App的名称"*/}
-                        {/*value="紫江商贸"*/}
-                        {/*validateHandler={this.onChangeAppName}*/}
-                    {/*/>*/}
                     <TextField
                         hintText="名称"
                         floatingLabelText="应用名称"
