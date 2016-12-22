@@ -71,7 +71,6 @@ export default class AppList extends React.Component {
             .then((res) => res.json())
             .then((res) => {
                 if (res.success) {
-                    console.log(res.data);
                     const data = res.data;
                     this.setState({
                         tableData: data,
