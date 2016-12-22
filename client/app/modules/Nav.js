@@ -53,15 +53,12 @@ import {
     white,
 } from 'material-ui/styles/colors';
 const style = {margin: 5};
-/**
- * A simple example of `AppBar` with an icon on the right.
- * By default, the left icon is a navigation-menu.
- */
+
 export default class Nav extends React.Component {
     constructor(props) {
         super(props);
         const pathname = this.props.location.pathname;
-        if(pathname === '/'){
+        if(pathname === '/' || window.innerWidth < 900){
             this.state = {
                 open: false,
                 docked: false,
@@ -83,7 +80,7 @@ export default class Nav extends React.Component {
     };
     changeRoute(event, to){
         browserHistory.push(to);
-        if(to === '/'){
+        if(to === '/' || window.innerWidth < 900){
             this.setState({
                 open: !this.state.open,
                 docked: false,
