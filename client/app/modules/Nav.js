@@ -5,8 +5,12 @@ import {List, ListItem} from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 import Avatar from 'material-ui/Avatar';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 
 import {
     deepOrange300,
@@ -18,29 +22,37 @@ export default class Nav extends React.Component {
     constructor(props) {
         super(props);
         const pathname = this.props.location.pathname;
-        if(pathname === '/' || window.innerWidth < 900){
+        if (pathname === '/' || window.innerWidth < 900) {
             this.state = {
                 open: false,
                 docked: false,
-                paddingLeft : 0,
+                paddingLeft: 0,
             };
         } else {
             this.state = {
                 open: true,
                 docked: true,
-                paddingLeft : 256,
+                paddingLeft: 256,
             };
         }
-
+        if(pathname === '/app/basic'){
+            this.state.navType = 'app';
+        }else{
+            this.state.navType = 'site';
+        }
+        this.state.showAppArrow = this.props.location.search.match(/\?id=/) ? true : false;
         this.handleToggle = this.handleToggle.bind(this);
         this.changeRoute = this.changeRoute.bind(this);
+        this.changeDrawer = this.changeDrawer.bind(this);
     }
-    handleToggle(event, logged){
+
+    handleToggle(event, logged) {
         this.setState({open: !this.state.open});
     };
-    changeRoute(event, to){
+
+    changeRoute(event, to) {
         browserHistory.push(to);
-        if(to === '/' || window.innerWidth < 900){
+        if (to === '/' || window.innerWidth < 900) {
             this.setState({
                 open: !this.state.open,
                 docked: false,
@@ -49,15 +61,27 @@ export default class Nav extends React.Component {
         } else {
             this.setState({
                 docked: true,
-                paddingLeft : 256,
+                paddingLeft: 256,
             });
         }
     };
-    render(){
+    changeDrawer(e, type){
+        this.setState({navType:type});
+        e.stopPropagation();
+    }
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.location.search);
+        this.setState({
+            navType: nextProps.location.pathname === '/app/basic' ? 'app' : 'site',
+            showAppArrow: nextProps.location.search.match(/\?id=/) ? true : false,
+        });
+    }
+    render() {
+        console.log(this.state);
         return (
             <div>
                 <AppBar
-                    title="App pack"
+                    title="首页"
                     iconElementRight={
                         <Avatar
                             size={46}
@@ -69,38 +93,77 @@ export default class Nav extends React.Component {
                         </Avatar>
                     }
                     onLeftIconButtonTouchTap={this.handleToggle}
-                    style={{ position: 'fixed', top: 0 }}
+                    style={{position: 'fixed', top: 0}}
                 />
-                <Drawer
-                    width={256}
-                    open={this.state.open}
-                    docked={this.state.docked}
-                    onRequestChange={(open) => this.setState({open})}
-                >
-                    <AppBar
-                        title="App Pack"
-                        iconElementLeft={<div></div>}
-                        onClick={(e) => this.changeRoute(e, "/")}
-                    />
-                    <List>
-                        <ListItem
-                            primaryText="应用"
-                            leftIcon={<ContentSend />}
-                            onClick={(e) => this.changeRoute(e, "/app")}
-                        />
-                        <ListItem
-                            primaryText="文档"
-                            leftIcon={<ContentDrafts />}
-                            onClick={(e) => this.changeRoute(e, "/doc")}
+                {
+                    this.state.navType === 'app' ? (
+                            <Drawer
+                                width={256}
+                                open={this.state.open}
+                                docked={this.state.docked}
+                                onRequestChange={(open) => this.setState({open})}
+                            >
+                                <AppBar
+                                    title="应用设置"
+                                    iconElementLeft={<ArrowBack style={{height: 48,  color:'#ffffff'}} />}
+                                    onClick={(e) => this.changeDrawer(e, "site")}
+                                />
+                                <List>
+                                    <ListItem key={1} primaryText="基本设置" leftIcon={<ContentDrafts />}/>
+                                    <ListItem key={2} primaryText="插件选择" leftIcon={<ContentDrafts />}/>
+                                    <ListItem key={3} primaryText="图标设置" leftIcon={<ContentDrafts />}/>
+                                    <ListItem key={4} primaryText="状态栏设置" leftIcon={<ContentDrafts />}/>
+                                    <ListItem key={5} primaryText="启动页设置" leftIcon={<ContentDrafts />}/>
+                                    <ListItem key={6} primaryText="证书管理" leftIcon={<ContentDrafts />}/>
+                                </List>
+                            </Drawer>
+                        ) : (
+                            <Drawer
+                                width={256}
+                                open={this.state.open}
+                                docked={this.state.docked}
+                                onRequestChange={(open) => this.setState({open})}
+                            >
+                                <AppBar
+                                    title="首页"
+                                    iconElementRight={<div></div>}
+                                    onClick={(e) => this.changeRoute(e, "/")}
+                                />
+                                <List>
+                                    <ListItem
+                                        primaryText="应用"
+                                        leftIcon={<ContentSend />}
+                                        rightIconButton={
+                                            this.state.showAppArrow ?
+                                                (
+                                                    <ArrowForward
+                                                        style={{height: 48, color:'#000000'}}
+                                                        onClick={(e) => this.changeDrawer(e, "app")}
+                                                    />
+                                                ) : (
+                                                    <div></div>
+                                                )
 
-                        />
-                        <ListItem
-                            primaryText="关于"
-                            leftIcon={<ContentInbox />}
-                            onClick={(e) => this.changeRoute(e, "/about")}
-                        />
-                    </List>
-                </Drawer>
+                                        }
+                                        onClick={(e) => this.changeRoute(e, "/app")}
+                                    />
+                                    <ListItem
+                                        primaryText="文档"
+                                        leftIcon={<ContentDrafts />}
+                                        onClick={(e) => this.changeRoute(e, "/doc")}
+
+                                    />
+                                    <ListItem
+                                        primaryText="关于"
+                                        leftIcon={<ContentInbox />}
+                                        onClick={(e) => this.changeRoute(e, "/about")}
+                                    />
+                                </List>
+                            </Drawer>
+                        )
+
+                }
+
                 <div
                     style={{
                         paddingTop: 64,

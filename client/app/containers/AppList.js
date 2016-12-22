@@ -67,18 +67,18 @@ export default class AppList extends React.Component {
                         enableSelectAll={this.state.enableSelectAll}
                     >
                         <TableRow>
-                            <TableHeaderColumn colSpan="7" tooltip="应用列表" style={{textAlign: 'center'}}>
+                            <TableHeaderColumn colSpan="3" tooltip="应用列表" style={{textAlign: 'center'}}>
                                 应用列表
                             </TableHeaderColumn>
                         </TableRow>
                         <TableRow>
-                            <TableHeaderColumn>图标</TableHeaderColumn>
+                            {/*<TableHeaderColumn>图标</TableHeaderColumn>*/}
                             <TableHeaderColumn>应用名称</TableHeaderColumn>
                             <TableHeaderColumn>应用ID</TableHeaderColumn>
-                            <TableHeaderColumn>最新版本</TableHeaderColumn>
-                            <TableHeaderColumn>安装量</TableHeaderColumn>
+                            {/*<TableHeaderColumn>最新版本</TableHeaderColumn>*/}
+                            {/*<TableHeaderColumn>安装量</TableHeaderColumn>*/}
                             <TableHeaderColumn>管理</TableHeaderColumn>
-                            <TableHeaderColumn>开发</TableHeaderColumn>
+                            {/*<TableHeaderColumn>开发</TableHeaderColumn>*/}
                         </TableRow>
                     </TableHeader>
                     <TableBody
@@ -89,13 +89,13 @@ export default class AppList extends React.Component {
                     >
                         {this.state.tableData.map( (row, index) => (
                             <TableRow key={index} striped={true}>
-                                <TableRowColumn>{row.status}</TableRowColumn>
+                                {/*<TableRowColumn>{row.status}</TableRowColumn>*/}
                                 <TableRowColumn>{row.name}</TableRowColumn>
-                                <TableRowColumn>{index}</TableRowColumn>
-                                <TableRowColumn>{row.lastVersion}</TableRowColumn>
-                                <TableRowColumn>{row.installCapacity}</TableRowColumn>
+                                <TableRowColumn>{row.id}</TableRowColumn>
+                                {/*<TableRowColumn>{row.lastVersion}</TableRowColumn>*/}
+                                {/*<TableRowColumn>{row.installCapacity}</TableRowColumn>*/}
                                 <TableRowColumn><Link className="button" to={"/app/basic?id="+row.id}>管理</Link></TableRowColumn>
-                                <TableRowColumn>开发</TableRowColumn>
+                                {/*<TableRowColumn>开发</TableRowColumn>*/}
                             </TableRow>
                         ))}
                     </TableBody>

@@ -82,9 +82,7 @@ export default class CreateApp extends React.Component {
                     modal={false}
                     open={this.state.open}
                     onRequestClose={this.handleClose}
-                    contentStyle={{
-                        maxWidth: 600,
-                    }}
+                    autoDetectWindowHeight={false}
                 >
                     <TextField
                         hintText="名称"

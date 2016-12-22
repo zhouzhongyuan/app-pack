@@ -9,7 +9,7 @@ import validator from 'validator';
 export default class BasicSetting extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.location.query.id);
+        // console.log(this.props.location.query.id);
         this.state={
             id:this.props.location.query.id || '',
             name:this.props.name || '',
@@ -57,7 +57,6 @@ export default class BasicSetting extends React.Component {
             .then((res) => res.json())
             .then((res) => {
                 if (res.success) {
-                    console.log(res.data);
                     const data = res.data;
                     this.setState({
                         name: data.name,
