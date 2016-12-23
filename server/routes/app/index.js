@@ -5,10 +5,8 @@ const router = new express.Router();
 const App = require('mongoose').model('App');
 
 // Create
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     // 提交数据
-    req.body.name;
-    req.body.description;
     const appData = {
         createTime: new Date(),
         name: req.body.name,
@@ -66,7 +64,6 @@ function findAppList() {
 
 // Read
 router.get('/:id', (req, res) => {
-    console.log();
     const id = req.params.id;
     findApp(id)
         .then((data) => {
@@ -95,19 +92,34 @@ router.get('/', (req, res) => {
 
 });
 // Update
-router.put('/', (req, res, next) => {
+router.put('/', (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
 
-    return res.json({
-        success: false,
-        id,
-        name,
-    });
+    // Save to db
+    // 根据id判断此app是否存在
+    findApp(id)
+        .then((appData) => {
+            console.log(appData.name);
+            //
+            // 保存到数据库。
+            appData.name = name;
+            appData.save(function (err, updatedTank) {
+                if (err) return handleError(err);
+                res.send(updatedTank);
+            });
 
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.json({
+                success: false,
+                data: err,
+            });
+        })
 });
 // Delete
-router.delete('/', (req, res, next) => {
+router.delete('/', (req, res) => {
     return res.json({
         success: false,
     });

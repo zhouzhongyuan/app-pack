@@ -1,6 +1,4 @@
 import React from 'react';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-
 import VersionSelect from '../../components/VersionSelect'
 import EditableTextField from '../../components/EditableTextField'
 import NotEditableTextField from '../../components/NotEditableTextField'
@@ -20,7 +18,7 @@ export default class BasicSetting extends React.Component {
     onChangeAppName(e){
         const isValidate = validator.isLength(e.target.value, {min:2, max: 4});
         if(!isValidate){
-            const errorText="App名称有问题，一般为2～4个字符"
+            const errorText="App名称有问题，一般为2～4个字符";
             this.setState({errorText: errorText});
         }else {
             this.setState({errorText:''});
@@ -30,7 +28,7 @@ export default class BasicSetting extends React.Component {
     onChangeAppDescription(e){
         const isValidate = validator.isLength(e.target.value, {min:10, max: 300});
         if(!isValidate){
-            const errorText="App描述有问题，一般为10～300个字符"
+            const errorText="App描述有问题，一般为10～300个字符";
             this.setState({errorText: errorText});
         }else {
             this.setState({errorText:''});
@@ -40,7 +38,7 @@ export default class BasicSetting extends React.Component {
     onChangeAppSourceLink(e){
         const isValidate = validator.isURL(e.target.value);
         if(!isValidate){
-            const errorText="Url地址不正确，请输入完整的地址"
+            const errorText="Url地址不正确，请输入完整的地址";
             this.setState({errorText: errorText});
         }else {
             this.setState({errorText:''});
@@ -90,12 +88,16 @@ export default class BasicSetting extends React.Component {
                     validateHandler={this.onChangeAppDescription}
                     multiLine={true}
                     rowsMax={10}
+                    queryName="description"
+                    id={this.state.id}
                 />
                 <EditableTextField
                     label="代码地址"
                     hintText="您放置的SVN地址"
                     value="http://svn.com"
                     validateHandler={this.onChangeAppSourceLink}
+                    queryName="secondaryDownloadLink"
+                    id={this.state.id}
                 />
                 <VersionSelect
                     edit={false}
