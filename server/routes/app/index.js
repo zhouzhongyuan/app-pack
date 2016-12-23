@@ -94,21 +94,15 @@ router.get('/', (req, res) => {
 // Update
 router.put('/', (req, res) => {
     const id = req.body.id;
-    const name = req.body.name;
-
     // Save to db
     // 根据id判断此app是否存在
     findApp(id)
         .then((appData) => {
-            console.log(appData.name);
-            //
-            // 保存到数据库。
-            appData.name = name;
+            Object.assign(appData, req.body);
             appData.save(function (err, updatedTank) {
                 if (err) return handleError(err);
                 res.send(updatedTank);
             });
-
         })
         .catch((err) => {
             console.log(err);

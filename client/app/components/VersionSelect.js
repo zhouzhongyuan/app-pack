@@ -1,9 +1,7 @@
 import React from 'react';
-import {Card, CardTitle, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import validator from 'validator';
-import ActionHome from 'material-ui/svg-icons/action/home';
 import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ContentSave from 'material-ui/svg-icons/content/save';
 const iconStyles = {
@@ -22,14 +20,6 @@ const styles = {
         heigth: '24px',
 
     },
-    // labelStyle: {
-    //     fontSize: '20px',
-    //     fontWight: 'bold',
-    //     color: '#000000',
-    //     display:'flex',
-    //     flexDirection: 'row',
-    //     justifyContent: 'space-between',
-    // },
     labelStyle: {
         fontSize: '20px',
         fontWight: 'bold',
@@ -58,8 +48,8 @@ export default class VersionSelect extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            defaultSelected: 'yigo16',
-            valueSelected: 'yigo16',
+            defaultSelected: this.props.value || 'yigo16',
+            valueSelected: this.props.value || 'yigo16',
             errorText: '',
             edit: this.props.edit,
         };
@@ -67,9 +57,10 @@ export default class VersionSelect extends React.Component {
         this.onCustomTextChange = this.onCustomTextChange.bind(this);
         this.onEditButtonClick = this.onEditButtonClick.bind(this);
         this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+        this.onRadioChange = this.onRadioChange.bind(this);
     }
 
-    onCustomButtonClick(e) {
+    onCustomButtonClick() {
         this.refs.customText.focus();
         // var customText = this.refs.customText.getValue();
     }
@@ -80,7 +71,7 @@ export default class VersionSelect extends React.Component {
         // validation
         const isValidate = validator.isURL(e.target.value);
         if (!isValidate) {
-            const errorText = "Url地址不正确，请输入完整的地址"
+            const errorText = "Url地址不正确，请输入完整的地址";
             this.setState({errorText});
         } else {
             this.setState({errorText: ''});
@@ -88,14 +79,50 @@ export default class VersionSelect extends React.Component {
         }
     }
 
-    onEditButtonClick(e) {
+    onEditButtonClick() {
         this.setState({edit: true});
     }
-
-    onSaveButtonClick(e) {
-        this.setState({edit: false});
+    onRadioChange(e, v){
+        this.setState({
+            defaultSelected: v,
+            valueSelected: v,
+        });
     }
-
+    onSaveButtonClick() {
+        if(! this.state.errorText){
+            let inputValue = this.state.valueSelected;
+            if( inputValue==='custom' ){
+                inputValue = this.refs.customText.getValue();
+            }
+            this.setState({value: inputValue});
+            this.setState({edit:false});
+            // 保存数据到server
+            fetch("/api/app", {
+                method: "put",
+                body: `id=${this.props.id}&primaryDownloadLink=${inputValue}`,
+                credentials: 'include',
+                headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                })
+            })
+                .then((res) => res.json())
+                .then((res) => {
+                    if(res.success){
+                        this.setState({
+                            snackBarOpen: true,
+                        });
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            defaultSelected:nextProps.value,
+        });
+    }
     render() {
         return (
             <div style={styles.itemStyle}>
@@ -107,7 +134,7 @@ export default class VersionSelect extends React.Component {
                                 <span
                                     style={styles.contentStyle}
                                 >
-                                    <span>Yigo 1.6</span>
+                                    <span>{this.state.defaultSelected}</span>
                                     <ModeEdit
                                         style={iconStyles}
                                         onClick={this.onEditButtonClick}
@@ -135,15 +162,18 @@ export default class VersionSelect extends React.Component {
                                         name="shipSpeed"
                                         defaultSelected={this.state.defaultSelected}
                                         valueSelected={this.state.valueSelected}
+                                        onChange={this.onRadioChange}
                                     >
                                         <RadioButton
                                             value="yigo16"
                                             label="Yigo 1.6"
+                                            displayValue="Yigo 1.6"
                                             style={styles.radioStyle}
                                         />
                                         <RadioButton
                                             value="yigo20"
                                             label="Yigo 2.0"
+                                            displayValue="Yigo 2.0"
                                             style={styles.radioStyle}
 
                                         />

@@ -7,12 +7,10 @@ const AppSchema = new mongoose.Schema({
     createTime: Date,
     name: String,
     description: String,
-    downloadLink: {
-        primaryDownloadLink: String,
-        secondaryDownloadLink: String,
-        user: String,
-        password: String,
-    },
+    primaryDownloadLink: String,
+    secondaryDownloadLink: String,
+    user: String,
+    password: String,
     packageName: String,
     icon: String,
     plugin: String

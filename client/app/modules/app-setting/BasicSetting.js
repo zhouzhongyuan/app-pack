@@ -60,6 +60,7 @@ export default class BasicSetting extends React.Component {
                         name: data.name,
                         description: data.description,
                         createTime: data.createTime,
+                        primaryDownloadLink: data.primaryDownloadLink,
                     });
                 } else if (res.status == 401) {
                     alert("Oops! You are not authorized.");
@@ -101,6 +102,8 @@ export default class BasicSetting extends React.Component {
                 />
                 <VersionSelect
                     edit={false}
+                    id={this.state.id}
+                    value={this.state.primaryDownloadLink}
                 />
                 <NotEditableTextField
                     label="应用ID"
