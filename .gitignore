@@ -1,6 +1,4 @@
 .idea
 node_modules
-src/client/public/*
-!src/client/public/img/
-!src/client/public/css/
-
+dist
+del*
