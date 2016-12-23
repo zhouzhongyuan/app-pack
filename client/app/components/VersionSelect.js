@@ -50,12 +50,14 @@ const displayValueObj = {
 export default class VersionSelect extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            defaultSelected: this.props.value || 'yigo16',
             valueSelected: this.props.value || 'yigo16',
+            inputDefaultValue: '',
             errorText: '',
             edit: this.props.edit,
         };
+        console.log(this.state.valueSelected);
         this.onCustomButtonClick = this.onCustomButtonClick.bind(this);
         this.onCustomTextChange = this.onCustomTextChange.bind(this);
         this.onEditButtonClick = this.onEditButtonClick.bind(this);
@@ -65,7 +67,6 @@ export default class VersionSelect extends React.Component {
 
     onCustomButtonClick() {
         this.refs.customText.focus();
-        // var customText = this.refs.customText.getValue();
     }
 
     onCustomTextChange(e) {
@@ -87,7 +88,6 @@ export default class VersionSelect extends React.Component {
     }
     onRadioChange(e, v){
         this.setState({
-            defaultSelected: v,
             valueSelected: v,
         });
     }
@@ -97,7 +97,19 @@ export default class VersionSelect extends React.Component {
             if( inputValue==='custom' ){
                 inputValue = this.refs.customText.getValue();
             }
-            this.setState({value: inputValue});
+
+            if( validator.isURL(inputValue) ){
+
+                this.setState({
+                    inputDefaultValue: inputValue,
+                    valueSelected: "custom",
+                });
+            }else{
+                this.setState({
+                    valueSelected:inputValue,
+                });
+            }
+
             this.setState({edit:false});
             // 保存数据到server
             fetch("/api/app", {
@@ -122,12 +134,26 @@ export default class VersionSelect extends React.Component {
         }
     }
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            defaultSelected:nextProps.value,
-        });
+        console.log(nextProps.value);
+        if( validator.isURL(nextProps.value) ){
+
+            this.setState({
+                inputDefaultValue: nextProps.value,
+                valueSelected: "custom",
+            });
+        }else{
+            this.setState({
+                valueSelected:nextProps.value,
+            });
+        }
+
     }
     render() {
-        const defaultSelectDisplayValue = validator.isURL(this.state.defaultSelected) ? this.state.defaultSelected : displayValueObj[this.state.defaultSelected];
+        console.log(this.state);
+        const defaultSelectDisplayValue = validator.isURL(this.state.inputDefaultValue) ? this.state.inputDefaultValue : displayValueObj[this.state.valueSelected];
+        if( validator.isURL(this.state.valueSelected) ){
+
+        }
         return (
             <div style={styles.itemStyle}>
                 {
@@ -163,8 +189,8 @@ export default class VersionSelect extends React.Component {
                                     }}
                                 >
                                     <RadioButtonGroup
+                                        defaultSelected="yigo16"
                                         name="shipSpeed"
-                                        defaultSelected={this.state.defaultSelected}
                                         valueSelected={this.state.valueSelected}
                                         onChange={this.onRadioChange}
                                     >
@@ -197,6 +223,7 @@ export default class VersionSelect extends React.Component {
                                         onChange={this.onCustomTextChange}
                                         errorText={this.state.errorText}
                                         errorStyle={styles.errorStyle}
+                                        defaultValue={this.state.inputDefaultValue}
                                     />
                                 </div>
                             </div>
