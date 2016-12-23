@@ -13,7 +13,7 @@ import AppList from './containers/AppList.js';
 import BasicSetting from './modules/app-setting/BasicSetting';
 import IconSetting from './modules/app-setting/Icon';
 injectTapEventPlugin();
-import Auth from './modules/Auth'
+import Auth from './modules/m/Auth'
 
 function requireAuth(nextState, replace) {
     if (!Auth.isUserAuthenticated()) {

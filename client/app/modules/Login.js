@@ -4,7 +4,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
-import Auth from './Auth'
+import Auth from './m/Auth'
 
 export default class Login extends React.Component {
     constructor(props) {
