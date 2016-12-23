@@ -43,7 +43,10 @@ const styles = {
         marginTop: 2,
     },
 };
-
+const displayValueObj = {
+    "yigo16": "Yigo 1.6",
+    "yigo20": "Yigo 2.0",
+}
 export default class VersionSelect extends React.Component {
     constructor(props) {
         super(props);
@@ -124,6 +127,7 @@ export default class VersionSelect extends React.Component {
         });
     }
     render() {
+        const defaultSelectDisplayValue = validator.isURL(this.state.defaultSelected) ? this.state.defaultSelected : displayValueObj[this.state.defaultSelected];
         return (
             <div style={styles.itemStyle}>
                 {
@@ -134,7 +138,7 @@ export default class VersionSelect extends React.Component {
                                 <span
                                     style={styles.contentStyle}
                                 >
-                                    <span>{this.state.defaultSelected}</span>
+                                    <span>{defaultSelectDisplayValue}</span>
                                     <ModeEdit
                                         style={iconStyles}
                                         onClick={this.onEditButtonClick}
