@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/dist/js/index.js",
-    "bundle": "webpack",
+    "bundle": "webpack --watch",
     "start:dev": "webpack-dev-server --inline --content-base ./src/client/ --history-api-fallback",
     "start:prod": "webpack && node src/server/app.js"
   },
