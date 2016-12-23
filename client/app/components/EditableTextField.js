@@ -67,14 +67,13 @@ export default class EditableTextField extends React.Component {
     }
     onSaveButtonClick(e){
         if(! this.state.errorText){
-            const appName = this.refs.textField.getValue();
-            this.setState({value: appName});
+            const inputValue = this.refs.textField.getValue();
+            this.setState({value: inputValue});
             this.setState({edit:false});
             // 保存数据到server
-            // appsetting/basic/appname
             fetch("/appsetting/basic/appname", {
-                method: "post",
-                body: `appName=${appName}`,
+                method: "put",
+                body: `appName=${inputValue}`,
                 credentials: 'include',
                 headers: new Headers({
                     'Content-Type': 'application/x-www-form-urlencoded'
