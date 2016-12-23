@@ -80,6 +80,8 @@ export default class BasicSetting extends React.Component {
                     hintText="您的App的名称"
                     value={this.state.name}
                     validateHandler={this.onChangeAppName}
+                    queryName="name"
+                    id={this.state.id}
                 />
                 <EditableTextField
                     label="应用描述"

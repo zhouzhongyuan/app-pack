@@ -71,9 +71,9 @@ export default class EditableTextField extends React.Component {
             this.setState({value: inputValue});
             this.setState({edit:false});
             // 保存数据到server
-            fetch("/appsetting/basic/appname", {
+            fetch("/api/app", {
                 method: "put",
-                body: `appName=${inputValue}`,
+                body: `id=${this.props.id}&${this.props.queryName}=${inputValue}`,
                 credentials: 'include',
                 headers: new Headers({
                     'Content-Type': 'application/x-www-form-urlencoded'

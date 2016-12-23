@@ -96,16 +96,13 @@ router.get('/', (req, res) => {
 });
 // Update
 router.put('/', (req, res, next) => {
+    const id = req.body.id;
+    const name = req.body.name;
 
-    //是否存在Id
-    if(req.body.id){
-        // 如果存在，那么就是Update
-    } else {
-        // 如果不存在，就是Create
-
-    }
     return res.json({
         success: false,
+        id,
+        name,
     });
 
 });
