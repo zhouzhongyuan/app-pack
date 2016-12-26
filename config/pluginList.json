@@ -1,0 +1,102 @@
+[
+	{
+		"name": "cordova-plugin-app-version",
+		"version": "0.1.8",
+		"displayName": "版本号",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-camera",
+		"version": "0.1.8",
+		"displayName": "相机＆相册",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-device",
+		"version": "",
+		"displayName": "设备基本信息",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-file",
+		"version": "",
+		"displayName": "读写文件",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-file-opener2",
+		"version": "",
+		"displayName": "打开文件",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-file-transfer",
+		"version": "",
+		"displayName": "文件传输",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-inappbrowser",
+		"version": "",
+		"displayName": "内置浏览器",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-whitelist",
+		"version": "",
+		"displayName": "白名单",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-x-socialsharing",
+		"version": "",
+		"displayName": "分享",
+		"defaultSelected": true
+	},
+	{
+		"name": "phonegap-plugin-barcodescanner",
+		"version": "",
+		"displayName": "条形码",
+		"defaultSelected": true
+	},
+	{
+		"name": "ionic-plugin-keyboard",
+		"version": "",
+		"displayName": "修复键盘遮挡",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-network-information",
+		"version": "",
+		"displayName": "网络情况",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-dialogs",
+		"version": "",
+		"displayName": "弹窗",
+		"defaultSelected": true
+	},
+	{
+		"name": "cordova-plugin-geolocation-baidu",
+		"version": "",
+		"displayName": "百度定位",
+		"defaultSelected": false,
+		"variable": [
+			"androidKey",
+			"iosKey"
+		]
+	},
+	{
+		"name": "cordova-plugin-baidu-push",
+		"version": "",
+		"displayName": "百度推送",
+		"defaultSelected": false
+	},
+	{
+		"name": "cordova-plugin-crosswalk-webview",
+		"version": "",
+		"displayName": "crosswalk引擎",
+		"defaultSelected": false
+	}
+]

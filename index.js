@@ -32,7 +32,9 @@ app.use('/appsetting/basic', appsettingsBasicRoutes);
 // app
 const appRoutes = require('./server/routes/app/');
 app.use('/api/app', appRoutes);
-
+// pluginList
+const pluginListRoutes = require('./server/routes/pluginList');
+app.use('/api/pluginList', pluginListRoutes);
 // 对于任意的get返回index.html, 能够实现非主页刷新
 app.get('*', function (request, response){
     response.sendFile( path.resolve('./server/static/index.html') )
