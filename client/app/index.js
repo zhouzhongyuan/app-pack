@@ -11,6 +11,7 @@ import Login from './modules/Login';
 import App from './modules/App';
 import AppList from './containers/AppList.js';
 import BasicSetting from './modules/app-setting/BasicSetting';
+import PluginSelect from './modules/app-setting/PluginSelect';
 import IconSetting from './modules/app-setting/Icon';
 injectTapEventPlugin();
 import Auth from './modules/m/Auth'
@@ -35,6 +36,7 @@ ReactDOM.render(
                     <IndexRoute component={AppList} />
                     <Route path="list" component={AppList} />
                     <Route path="basic" component={BasicSetting} />
+                    <Route path="plugin" component={PluginSelect} />
                     <Route path="icon" component={IconSetting} />
                 </Route>
             </Route>

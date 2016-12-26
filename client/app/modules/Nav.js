@@ -35,12 +35,13 @@ export default class Nav extends React.Component {
                 paddingLeft: 256,
             };
         }
-        if(pathname === '/app/basic'){
+        if(pathname === '/app'){
             this.state.navType = 'app';
         }else{
             this.state.navType = 'site';
         }
         this.state.showAppArrow = this.props.location.search.match(/\?id=/) ? true : false;
+        this.state.search = '';
         this.handleToggle = this.handleToggle.bind(this);
         this.changeRoute = this.changeRoute.bind(this);
         this.changeDrawer = this.changeDrawer.bind(this);
@@ -70,14 +71,18 @@ export default class Nav extends React.Component {
         e.stopPropagation();
     }
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.location.search);
+        const search = nextProps.location.search;
         this.setState({
-            navType: nextProps.location.pathname === '/app/basic' ? 'app' : 'site',
+            search,
+        });
+        console.log(nextProps.location.search);
+        console.log(nextProps.location.pathname);
+        this.setState({
+            navType: nextProps.location.pathname.match(/\/app/) ? 'app' : 'site',
             showAppArrow: nextProps.location.search.match(/\?id=/) ? true : false,
         });
     }
     render() {
-        console.log(this.state);
         return (
             <div>
                 <AppBar
@@ -109,12 +114,38 @@ export default class Nav extends React.Component {
                                     onClick={(e) => this.changeDrawer(e, "site")}
                                 />
                                 <List>
-                                    <ListItem key={1} primaryText="基本设置" leftIcon={<ContentDrafts />}/>
-                                    <ListItem key={2} primaryText="插件选择" leftIcon={<ContentDrafts />}/>
-                                    <ListItem key={3} primaryText="图标设置" leftIcon={<ContentDrafts />}/>
-                                    <ListItem key={4} primaryText="状态栏设置" leftIcon={<ContentDrafts />}/>
-                                    <ListItem key={5} primaryText="启动页设置" leftIcon={<ContentDrafts />}/>
-                                    <ListItem key={6} primaryText="证书管理" leftIcon={<ContentDrafts />}/>
+                                    <ListItem
+                                        key={1}
+                                        primaryText="基本设置"
+                                        leftIcon={<ContentDrafts />}
+                                        onClick={(e) => this.changeRoute(e, `/app/basic${this.state.search}`)}
+                                    />
+                                    <ListItem
+                                        key={2}
+                                        primaryText="插件选择"
+                                        leftIcon={<ContentDrafts />}
+                                        onClick={(e) => this.changeRoute(e, `/app/plugin${this.state.search}`)}
+                                    />
+                                    <ListItem
+                                        key={3}
+                                        primaryText="图标设置"
+                                        leftIcon={<ContentDrafts />}
+                                    />
+                                    <ListItem
+                                        key={4}
+                                        primaryText="状态栏设置"
+                                        leftIcon={<ContentDrafts />}
+                                    />
+                                    <ListItem
+                                        key={5}
+                                        primaryText="启动页设置"
+                                        leftIcon={<ContentDrafts />}
+                                    />
+                                    <ListItem
+                                        key={6}
+                                        primaryText="证书管理"
+                                        leftIcon={<ContentDrafts />}
+                                    />
                                 </List>
                             </Drawer>
                         ) : (
