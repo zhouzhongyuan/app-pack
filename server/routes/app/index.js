@@ -94,6 +94,10 @@ router.get('/', (req, res) => {
 // Update
 router.put('/', (req, res) => {
     const id = req.body.id;
+    if(req.body.plugin){
+        req.body.plugin = JSON.parse(req.body.plugin);
+    }
+    console.log(req.body);
     // Save to db
     // 根据id判断此app是否存在
     findApp(id)

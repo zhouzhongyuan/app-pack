@@ -13,7 +13,7 @@ const AppSchema = new mongoose.Schema({
     password: String,
     packageName: String,
     icon: String,
-    plugin: String
+    plugin: Array
 });
 //自增ID配置
 AppSchema.plugin(autoIncrement.plugin, {
