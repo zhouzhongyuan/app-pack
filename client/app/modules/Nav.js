@@ -146,6 +146,12 @@ export default class Nav extends React.Component {
                                         primaryText="证书管理"
                                         leftIcon={<ContentDrafts />}
                                     />
+                                    <ListItem
+                                        key={7}
+                                        primaryText="云端打包"
+                                        leftIcon={<ContentDrafts />}
+                                        onClick={(e) => this.changeRoute(e, `/app/pack${this.state.search}`)}
+                                    />
                                 </List>
                             </Drawer>
                         ) : (

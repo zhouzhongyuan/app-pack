@@ -15,6 +15,7 @@ import Plugin from './modules/app-setting/Plugin';
 import PluginList from './modules/app-setting/plugin/PluginList';
 import PluginSelect from './modules/app-setting/PluginSelect';
 import IconSetting from './modules/app-setting/Icon';
+import Pack from './modules/app-setting/Pack';
 injectTapEventPlugin();
 import Auth from './modules/m/Auth'
 
@@ -44,6 +45,7 @@ ReactDOM.render(
                         <Route path="select" component={PluginSelect} />
                     </Route>
                     <Route path="icon" component={IconSetting} />
+                    <Route path="pack" component={Pack} />
                 </Route>
             </Route>
         </Router>
